@@ -1,18 +1,2 @@
 #!/bin/bash
-
-# Get the values of WATER and STIR from the environment
-water_base=water
-stir_base=stir
-water=$(echo $WATER | bc -l -q "$water_base")
-stir=$(echo $STIR | bc -l -q "$stir_base")
-
-# Add the two numbers
-sum=$((water + stir))
-
-# Convert the sum to base bestchol
-bestchol_base=bestchol
-sum_bestchol=$(echo $sum | bc -l -q "$bestchol_base")
-
-# Print the result
-echo "The sum of WATER and STIR in base bestchol is:"
-echo $sum_bestchol
+printf "%o\n" $(( $((5#$(echo $WATER | tr water 01234))) + $((5#$(echo $STIR | tr stir. 01234))) )) | tr 01234567 bestchol
